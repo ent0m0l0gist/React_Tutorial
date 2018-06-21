@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Radium, {StyleRoot} from 'radium'
 import Person from './Person/Person'
 
 class App extends Component {
    state = {
    		persons:[
    		{id:'asdf12',name:'Raghav', age:21},
-   		{id:'ghtr123',name:'Leo', age: 31}
+			 {id:'ghtr123',name:'Leo', age: 31},
+			 {id:'ljehg', name:'Schrute', age:40}
 		],
 		showPersons:false
 		
@@ -49,6 +51,17 @@ class App extends Component {
 
    render() {  
 //render function is called again when react reloads a component
+		const style = {
+		backgroundColor : 'green',
+		color: 'white',
+		cursor:'pointer',
+		border :'1px solid blue',
+		padding : '8px',
+		':hover': {
+			backgroundColor:'lightgreen',
+			color:'black'
+		}
+	}
 
 	let persons = null;
 
@@ -66,22 +79,36 @@ class App extends Component {
 			})}
 		  </div>
 		);
+
+		style.backgroundColor='red';
+
+		style[':hover']={
+			backgroundColor:'salmon',
+			color:'black'
+		}
+
 	  }
-
+		const classes=[];
+		if(this.state.persons.length<3)
+		{
+			classes.push('red');
+		}
+		if(this.state.persons.length<2)
+		{
+			classes.push('bold');
+		}
 	   
-	const style = {
-		backgroundColor : 'white',
-		cursor:'pointer',
-		border :'1px solid blue'
-	}
+	
     return (
-
+			<StyleRoot>
       <div className="App">
        		<h1>Hi, I am a React app </h1>
+					 <p className={classes.join(' ')}>Welcome home</p>
        		<button style = {style} onClick={this.togglePersons}>Toggle</button>
 			{persons}
 			
       </div>
+			</StyleRoot>
     );
   }
   //ONE WAY TO PUT CONDITION : this.state.showPersons ? (JSX HERE) : (else wala JSX)
@@ -94,4 +121,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default Radium(App);
