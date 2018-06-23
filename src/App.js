@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Radium, {StyleRoot} from 'radium'
 import Person from './Person/Person'
 
 class App extends Component {
@@ -57,10 +56,7 @@ class App extends Component {
 		cursor:'pointer',
 		border :'1px solid blue',
 		padding : '8px',
-		':hover': {
-			backgroundColor:'lightgreen',
-			color:'black'
-		}
+		
 	}
 
 	let persons = null;
@@ -82,11 +78,6 @@ class App extends Component {
 
 		style.backgroundColor='red';
 
-		style[':hover']={
-			backgroundColor:'salmon',
-			color:'black'
-		}
-
 	  }
 		const classes=[];
 		if(this.state.persons.length<3)
@@ -100,7 +91,7 @@ class App extends Component {
 	   
 	
     return (
-			<StyleRoot>
+			
       <div className="App">
        		<h1>Hi, I am a React app </h1>
 					 <p className={classes.join(' ')}>Welcome home</p>
@@ -108,7 +99,7 @@ class App extends Component {
 			{persons}
 			
       </div>
-			</StyleRoot>
+			
     );
   }
   //ONE WAY TO PUT CONDITION : this.state.showPersons ? (JSX HERE) : (else wala JSX)
@@ -121,4 +112,4 @@ class App extends Component {
 }
 
 
-export default Radium(App);
+export default App;
